@@ -1,0 +1,223 @@
+// ============================
+// IMPORTS
+// ============================
+@import "options" 
+@import "default"
+
+
+
+// ============================
+// MAIN STYLES
+// ============================
+body
+	font-family: sans-serif
+	background-color: #eeeeee
+	padding: 40px
+	@include flex ($d: flex, $jc: flex-start, $fw: nowrap, $ai: stretch, $fd: row)
+	/* Form-1 */
+.form
+	width: 305px
+	margin: auto
+	box-shadow: 0 0 4px 0 rgba(#000, .3)
+	border-radius: 4px 
+	background-color: #fff
+	overflow: hidden
+	&-head
+		@include social-bg($bg: $mainC1)
+		@include flex ($ai: center, $fd: column)
+		color: #fff
+		padding: 25px
+	&__title ~ .social-links
+		margin-top: 25px
+	&-container
+		padding: 20px 30px 35px
+	&-item
+		position: relative
+		margin-top: 15px
+		&__input
+			display: block
+			position: relative
+			z-index: 2 
+			font-size: 12px
+			width: 100%
+			height: 35px
+			background-color: transparent 
+			border: none
+				bottom: 2px solid #dcdcdc
+		&__input:focus ~ &__line
+			width: 100%
+		&__input:focus ~ &__label
+			transform: scale(.6)
+				origin: left center
+			top: -5px
+			
+		&__label
+			z-index: 1 
+			font-size: 12px
+			color: #626262
+			position: absolute
+			left: 0
+			top: calc(50% - .5em)
+			transition: .3s
+		&__line
+			position: absolute
+			z-index: 3
+			bottom: 0
+			left: 0
+			width: 0
+			height: 2px
+			background: $mainC1
+			transition: .3s
+	&-help
+		text-align: right
+		margin-top: 5px
+		&__link
+			color: #bfb6b1
+			font-size: 10px
+			strong
+				color: #616161
+			&:hover
+				text-decoration: underline
+	&-login
+		@include flex ($jc: space-between,$ai: center)
+		margin-top: 40px
+		&__btn
+			@include flex ($jc: center,$ai: center)
+			border-radius: 18px
+			width: 75px
+			height: 30px
+			background-color: #616161
+			color: #fff
+			text-transform: uppercase
+			font-size: 10px
+			box-shadow: 0 2px 3px 0 rgba(#000, .15)
+		&__link
+			font-size: 10px
+			color: #bfb6b1
+			strong
+				color: #616161
+			&:hover
+				text-decoration: underline
+.social-links
+	@include flex
+	cursor: pointer
+	li
+		margin: 0 10px
+	&__item
+		color: #fff
+		&:hover
+			color: #616161
+	/* Form-2 */
+.form_mod
+	&_2
+		.form
+			&__title
+				@include flex($ai: center, $fd: column)
+				color: #EC407A
+				margin-top: 20px
+				
+			&-login
+				@include flex($jc: space-between)
+				&__btn
+					width: 105px 
+					background-color: #EC407A
+			&-help
+				text-align: left
+				&__link
+					&_ntd
+						@include flex($ai: center)
+						margin-top: 15px
+						&:hover
+						text-decoration: none
+						&:before
+							content: ""
+							display: block
+							width: 12px
+							height: 12px
+							border: 1px solid #616161
+								radius: 2px 
+							margin-right: 10px
+							font-family: "Font Awesome 5 Free"
+							font-weight: 900
+					a, strong
+						color: #5ca5f4
+					a:hover, strong:hover
+						color: #EC407A
+						text-decoration: underline
+				&__input
+					display: none
+				&__input:checked ~ .form-help__link:before
+					@include flex($ai: center, $jc: center)
+					content: "\f00c"
+					color: #000
+					
+					&:hover
+						text-decoration: none
+			&-login
+				@include flex ($ai: flex-start, $jc: space-between)
+				span
+					color: #5ca5f4
+			&-item
+				&__line
+					background: $mainC2
+			&-head
+				@include social-bg($bg: #919fba)
+		.social-links
+			&__item
+				&:hover
+					color: #EC407A
+	
+	/* Form-3 */
+	&_3
+		.form
+			
+			&__title
+				@include flex ($ai: center, $fd: column)
+				color: #000
+				margin-top: 20px
+			&-item
+				&__line
+					background: #4d8cf5
+				&__input:focus ~ .form-item__label
+					color: #4d8cf5
+			&-help
+				&__link, strong
+					color: #4d8cf5
+			&-login
+				margin-bottom: -50px
+				&__btn
+					width: 100%
+					height: 30px
+					@include social-bg($bg: linear-gradient(to right, #63c7f8, #334aa7))
+					/*&:hover
+						@include social-bg($bg: linear-gradient(to right, #334aa7, #63c7f8))*/
+			&-head
+				@include social-bg($bg: transparent)
+				padding-top: 15px
+				&__title
+					text-align: center
+					color: #7c7a7f
+					font-weight: normal
+					font-size: 10px
+					margin: 20px
+		.social
+			li
+				margin: 0 5px
+			&-links
+				&__item
+					@include flex($jc: center, $ai:center)
+					width: 55px
+					height: 30px
+					border-radius: 18px
+					color: #2097f5
+					box-shadow: 0 1px 3px 0 rgba(#2097f5, .5)
+					&:hover
+						color: #fff
+						background-color: #2097f5
+// ============================
+// MEDIA
+// ============================
+@for $i from 1 to length($mediaBp)
+	@media (max-width: nth($mediaBp, $i))
+		.container
+			max-width: nth($mediaBp, $i + 1)

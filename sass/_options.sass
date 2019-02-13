@@ -1,0 +1,45 @@
+// ============================
+// MAIN COLORS
+// ============================
+
+$mainC1: linear-gradient(to top right, #ffd66d, #fd6562) 
+$mainC2: #EC407A 
+$mainC3: #898f98 
+
+
+// ============================
+// MEDIA
+// ============================
+
+$mediaBp: (1010px, 767px, 640px, 480px)
+
+// ============================
+// FUNCTION
+// ============================
+@function col-width ($n)
+	@if $n == auto 
+		@return auto
+	@else 
+		@return calc(100% / #{$n})
+
+// ============================
+// MIXIN
+// ============================
+
+@mixin social-bg($bg: transparent)
+	background: $bg
+
+
+@mixin flex ($d: flex, $jc: flex-start, $fw: nowrap, $ai: stretch, $fd: row)
+	display: $d
+	flex-flow: $fd $fw
+	justify-content: $jc
+	align-items: $ai
+
+@mixin grid ($s: 5px, $c: auto, $w: nowrap)
+	&-grid
+		@include flex($fw: $w)
+		margin: -$s
+		&__col
+			width: col-width($c)
+			padding: $s
